@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CBT Journal</title>
+
+    <!-- Theme will be dynamically loaded by ThemeWrapper -->
+    <link id="app-theme" rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/primereact@10.9.4/resources/themes/lara-light-indigo/theme.css" />
+
+    <style>
+      /* Theme-related CSS variables - Wise official colors */
+      body.theme-light {
+        /* Core colors */
+        --wise-bright-green: #9FE870;
+        --wise-forest-green: #163300;
+
+        /* Secondary colors */
+        --wise-bright-orange: #FFC091;
+        --wise-bright-yellow: #FFEB69;
+        --wise-bright-blue: #A0E1E1;
+        --wise-bright-pink: #FFD7EF;
+        --wise-dark-purple: #260A2F;
+        --wise-dark-gold: #3A341C;
+        --wise-dark-charcoal: #21231D;
+        --wise-dark-maroon: #320707;
+
+        /* Mapped variables for app */
+        --wise-primary: var(--wise-bright-green);
+        --wise-primary-light: #F0F9EA; /* Light tint of bright green */
+        --wise-secondary: var(--wise-forest-green);
+        --wise-accent: var(--wise-bright-orange);
+        --wise-background: #FFFFFF;
+        --wise-text: var(--wise-forest-green);
+      }
+
+      body.theme-dark {
+        /* Core colors */
+        --wise-bright-green: #9FE870;
+        --wise-forest-green: #163300;
+
+        /* Secondary colors */
+        --wise-bright-orange: #FFC091;
+        --wise-bright-yellow: #FFEB69;
+        --wise-bright-blue: #A0E1E1;
+        --wise-bright-pink: #FFD7EF;
+        --wise-dark-purple: #260A2F;
+        --wise-dark-gold: #3A341C;
+        --wise-dark-charcoal: #21231D;
+        --wise-dark-maroon: #320707;
+
+        /* Mapped variables for app dark mode */
+        --wise-primary: var(--wise-bright-green);
+        --wise-primary-light: #1F3D12; /* Darker tint of forest green */
+        --wise-secondary: var(--wise-dark-charcoal);
+        --wise-accent: var(--wise-bright-orange);
+        --wise-background: #121212;
+        --wise-text: #FFFFFF;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

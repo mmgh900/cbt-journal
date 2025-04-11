@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@import "tailwindcss";
+
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+    /* Wise core colors */
+    --color-wise-bright-green: oklch(0.85 0.18 130);
+    --color-wise-forest-green: oklch(0.2 0.10 130);
+
+    /* Wise secondary colors */
+    --color-wise-bright-orange: oklch(0.85 0.12 40);
+    --color-wise-bright-yellow: oklch(0.92 0.15 90);
+    --color-wise-bright-blue: oklch(0.85 0.08 190);
+    --color-wise-bright-pink: oklch(0.9 0.07 330);
+    --color-wise-dark-purple: oklch(0.14 0.08 300);
+    --color-wise-dark-gold: oklch(0.22 0.06 90);
+    --color-wise-dark-charcoal: oklch(0.15 0.02 140);
+    --color-wise-dark-maroon: oklch(0.12 0.08 10);
+
+    --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+    /* Core colors */
+    --background: oklch(1 0 0); /* Pure white */
+    --foreground: oklch(0.145 0 0);
+
+    /* Wise core colors */
+    --wise-bright-green: oklch(0.85 0.18 130);
+    --wise-forest-green: oklch(0.2 0.10 130);
+
+    /* Wise secondary colors */
+    --wise-bright-orange: oklch(0.85 0.12 40);
+    --wise-bright-yellow: oklch(0.92 0.15 90);
+    --wise-bright-blue: oklch(0.85 0.08 190);
+    --wise-bright-pink: oklch(0.9 0.07 330);
+    --wise-dark-purple: oklch(0.14 0.08 300);
+    --wise-dark-gold: oklch(0.22 0.06 90);
+    --wise-dark-charcoal: oklch(0.15 0.02 140);
+    --wise-dark-maroon: oklch(0.12 0.08 10);
+
+    /* UI colors */
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.145 0 0);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.145 0 0);
+    --primary: var(--wise-forest-green);
+    --primary-foreground: oklch(1 0 0);
+    --secondary: oklch(0.98 0 0);
+    --secondary-foreground: var(--wise-forest-green);
+    --accent: var(--wise-bright-green);
+    --accent-foreground: var(--wise-forest-green);
+    --muted: oklch(0.98 0 0);
+    --muted-foreground: oklch(0.556 0 0);
+    --destructive: oklch(0.577 0.245 27.325);
+    --destructive-foreground: oklch(1 0 0);
+    --border: oklch(0.95 0 0);
+    --input: oklch(0.95 0 0);
+    --ring: var(--wise-forest-green);
+    --radius: 0.375rem;
+}
+
+@layer base {
+    body {
+        @apply bg-background text-foreground font-sans;
+    }
+
+    /* Remove focus outlines for a cleaner UI */
+    *:focus {
+        @apply outline-none ring-1 ring-primary/20;
+    }
+
+    /* Custom border utility */
+    .border-minimal {
+        @apply border border-border/60;
+    }
+}
+
+/* Theme-specific styles - no longer needed with shadcn */
+.theme-light {
+    /* These are now handled by the shadcn dark class */
+}
+
+.theme-dark {
+    /* These are now handled by the shadcn dark class */
+}
+
+@theme inline {
+    --radius-sm: calc(var(--radius) - 1px);
+    --radius-md: var(--radius);
+    --radius-lg: calc(var(--radius) + 1px);
+    --radius-xl: calc(var(--radius) + 2px);
+
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-destructive: var(--destructive);
+    --color-destructive-foreground: var(--destructive-foreground);
+    --color-border: var(--border);
+    --color-input: var(--input);
+    --color-ring: var(--ring);
+
+    /* Wise colors */
+    --color-wise-bright-green: var(--wise-bright-green);
+    --color-wise-forest-green: var(--wise-forest-green);
+    --color-wise-bright-orange: var(--wise-bright-orange);
+    --color-wise-bright-yellow: var(--wise-bright-yellow);
+    --color-wise-bright-blue: var(--wise-bright-blue);
+    --color-wise-bright-pink: var(--wise-bright-pink);
+    --color-wise-dark-purple: var(--wise-dark-purple);
+    --color-wise-dark-gold: var(--wise-dark-gold);
+    --color-wise-dark-charcoal: var(--wise-dark-charcoal);
+    --color-wise-dark-maroon: var(--wise-dark-maroon);
+}
+
+.dark {
+    --background: var(--wise-dark-charcoal);
+    --foreground: oklch(0.985 0 0);
+    --card: oklch(0.17 0.01 140); /* Slightly lighter than background */
+    --card-foreground: oklch(0.985 0 0);
+    --popover: oklch(0.17 0.01 140);
+    --popover-foreground: oklch(0.985 0 0);
+    --primary: var(--wise-bright-green);
+    --primary-foreground: var(--wise-forest-green);
+    --secondary: oklch(0.22 0.01 140);
+    --secondary-foreground: oklch(0.985 0 0);
+    --accent: var(--wise-bright-green);
+    --accent-foreground: var(--wise-forest-green);
+    --muted: oklch(0.22 0.01 140);
+    --muted-foreground: oklch(0.708 0 0);
+    --destructive: oklch(0.704 0.191 22.216);
+    --destructive-foreground: oklch(1 0 0);
+    --border: oklch(1 0 0 / 15%);
+    --input: oklch(1 0 0 / 10%);
+    --ring: var(--wise-bright-green);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
