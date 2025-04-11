@@ -1,3 +1,5 @@
+
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 @import "tailwindcss";
@@ -8,8 +10,8 @@
 
 @theme {
     /* Wise core colors */
-    --color-wise-bright-green: oklch(0.85 0.18 130);
-    --color-wise-forest-green: oklch(0.2 0.10 130);
+    --color-wise-bright-green: #9FE870;
+    --color-wise-forest-green: #163300;
 
     /* Wise secondary colors */
     --color-wise-bright-orange: oklch(0.85 0.12 40);
@@ -26,12 +28,13 @@
 
 :root {
     /* Core colors */
-    --background: oklch(1 0 0); /* Pure white */
+    --background: oklch(1 0 0);
+    /* Pure white */
     --foreground: oklch(0.145 0 0);
 
     /* Wise core colors */
-    --wise-bright-green: oklch(0.85 0.18 130);
-    --wise-forest-green: oklch(0.2 0.10 130);
+    --wise-bright-green: #9FE870;
+    --wise-forest-green: #163300;
 
     /* Wise secondary colors */
     --wise-bright-orange: oklch(0.85 0.12 40);
@@ -131,7 +134,8 @@
 .dark {
     --background: var(--wise-dark-charcoal);
     --foreground: oklch(0.985 0 0);
-    --card: oklch(0.17 0.01 140); /* Slightly lighter than background */
+    --card: oklch(0.17 0.01 140);
+    /* Slightly lighter than background */
     --card-foreground: oklch(0.985 0 0);
     --popover: oklch(0.17 0.01 140);
     --popover-foreground: oklch(0.985 0 0);
@@ -151,10 +155,11 @@
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
+    * {
+        @apply border-border;
+    }
+
+    body {
+        @apply bg-background text-foreground;
+    }
 }

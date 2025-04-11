@@ -16,6 +16,8 @@ export type CBTRecord = {
   thought: string;
   emotions: Emotion[];
   action: string;
+  forReasons?: string[];
+  againstReasons?: string[];
 };
 
 interface CBTState {

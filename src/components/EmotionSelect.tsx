@@ -72,7 +72,7 @@ export const EmotionSelect: React.FC<EmotionSelectProps> = ({ value, onChange })
                                     color: textColor
                                 }}
                             >
-                                {isSelected && <Check className="h-3 w-3 mr-1" />}
+                                {isSelected && <Check className=" mr-1" />}
                                 <span className="mr-1">{emotionData.emoji}</span>
                                 {emotion.name}
                             </button>
@@ -90,7 +90,7 @@ export const EmotionSelect: React.FC<EmotionSelectProps> = ({ value, onChange })
                             setShowDialog(true);
                         }}
                     >
-                        <PlusCircle className="h-3 w-3" />
+                        <PlusCircle className="" />
                         <span>Add custom</span>
                     </button>
                 </div>
