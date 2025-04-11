@@ -2,9 +2,19 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CBT Journal</title>
+    <meta name="description" content="A CBT journaling app to help track thoughts, emotions, and behaviors" />
+    <meta name="theme-color" content="#9FE870" />
+
+    <!-- App icons -->
+    <link rel="icon" href="/icons/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" href="/icons/icon-192x192.png" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+
+    <!-- PWA manifest -->
+    <link rel="manifest" href="/manifest.json" />
+
+    <title>CBT Journal | Track Your Thoughts</title>
 
     <!-- Theme will be dynamically loaded by ThemeWrapper -->
     <link id="app-theme" rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/primereact@10.9.4/resources/themes/lara-light-indigo/theme.css" />
@@ -62,6 +72,32 @@
   </head>
   <body>
     <div id="root"></div>
+    <!-- Install prompt for Safari on iOS -->
+    <div id="ios-install-prompt" style="display: none; position: fixed; bottom: 0; width: 100%; background-color: #f7f7f7; padding: 10px; text-align: center; box-shadow: 0 -2px 5px rgba(0,0,0,0.1);">
+      <p>Install this app on your device: tap <span style="font-size: 1.5em;">⋯</span> then "Add to Home Screen"</p>
+      <button onclick="document.getElementById('ios-install-prompt').style.display='none'" style="padding: 5px 10px; margin-left: 10px; border: none; background-color: #9FE870; border-radius: 5px;">Dismiss</button>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      // Register service worker for PWA
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/service-worker.js')
+            .then(registration => {
+              console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            })
+            .catch(error => {
+              console.log('ServiceWorker registration failed: ', error);
+            });
+        });
+      }
+
+      // Show install prompt for iOS users
+      if (navigator.standalone === false && navigator.userAgent.match(/iPhone|iPad|iPod/) && !window.matchMedia('(display-mode: standalone)').matches) {
+        setTimeout(() => {
+          document.getElementById('ios-install-prompt').style.display = 'block';
+        }, 2000);
+      }
+    </script>
   </body>
 </html>
