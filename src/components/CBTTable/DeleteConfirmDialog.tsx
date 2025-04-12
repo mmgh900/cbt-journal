@@ -8,6 +8,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
+import { useTranslation } from 'react-i18next';
 
 interface DeleteConfirmDialogProps {
   open: boolean;
@@ -16,22 +17,24 @@ interface DeleteConfirmDialogProps {
 }
 
 export const DeleteConfirmDialog = ({ open, onOpenChange, onConfirm }: DeleteConfirmDialogProps) => {
+  const { t } = useTranslation();
+
   return (
     <AlertDialog open={open} onOpenChange={onOpenChange}>
       <AlertDialogContent className="border-minimal p-4 max-w-[95vw] sm:max-w-[400px]">
         <AlertDialogHeader className="space-y-1">
-          <AlertDialogTitle>Confirm Deletion</AlertDialogTitle>
+          <AlertDialogTitle>{t('confirmDelete')}</AlertDialogTitle>
           <AlertDialogDescription className="text-sm">
-            Are you sure you want to delete this record? This action cannot be undone.
+            {t('confirmDelete')}
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel className="h-8 text-xs">Cancel</AlertDialogCancel>
+          <AlertDialogCancel className="h-8 text-xs">{t('cancel')}</AlertDialogCancel>
           <AlertDialogAction
             onClick={onConfirm}
             className="h-8 text-xs bg-destructive text-destructive-foreground hover:bg-destructive/90"
           >
-            Delete
+            {t('delete')}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

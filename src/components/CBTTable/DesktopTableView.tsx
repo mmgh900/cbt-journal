@@ -1,5 +1,6 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import { CBTRecord } from '../../store/cbtStore';
 import { ActionButtons } from './ActionButtons';
 import { DateFormatter, getFullDateTime } from './DateFormatter';
@@ -18,18 +19,20 @@ export const DesktopTableView = ({
   onDelete,
   onForAgainst
 }: DesktopTableViewProps) => {
+  const { t } = useTranslation();
+
   return (
     <div className="hidden sm:block">
       <div className="rounded-none">
         <Table>
           <TableHeader>
             <TableRow className="border-b border-border/60 hover:bg-transparent">
-              <TableHead className="w-[150px] py-2.5 text-xs font-medium text-foreground/70">Time</TableHead>
-              <TableHead className="py-2.5 text-xs font-medium text-foreground/70">Situation</TableHead>
-              <TableHead className="py-2.5 text-xs font-medium text-foreground/70">Thought</TableHead>
-              <TableHead className="w-[150px] py-2.5 text-xs font-medium text-foreground/70">Emotions</TableHead>
-              <TableHead className="py-2.5 text-xs font-medium text-foreground/70">Action</TableHead>
-              <TableHead className="w-[70px] text-right py-2.5 text-xs font-medium text-foreground/70">Actions</TableHead>
+              <TableHead className="w-[150px] py-2.5 text-xs font-medium text-foreground/70">{t('date')}</TableHead>
+              <TableHead className="py-2.5 text-xs font-medium text-foreground/70">{t('situation')}</TableHead>
+              <TableHead className="py-2.5 text-xs font-medium text-foreground/70">{t('thoughts')}</TableHead>
+              <TableHead className="w-[150px] py-2.5 text-xs font-medium text-foreground/70">{t('emotions')}</TableHead>
+              <TableHead className="py-2.5 text-xs font-medium text-foreground/70">{t('behaviours')}</TableHead>
+              <TableHead className="w-[70px] text-right py-2.5 text-xs font-medium text-foreground/70">{t('action')}</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>

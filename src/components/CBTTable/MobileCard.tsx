@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Brain, ThumbsUp } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { CBTRecord } from '../../store/cbtStore';
 import { ActionButtons } from './ActionButtons';
 import { DateFormatter } from './DateFormatter';
@@ -14,6 +15,8 @@ interface MobileCardProps {
 }
 
 export const MobileCard = ({ record, onEdit, onDelete, onForAgainst, index }: MobileCardProps) => {
+    const { t } = useTranslation();
+
     return (
         <motion.div
             layout
@@ -25,7 +28,6 @@ export const MobileCard = ({ record, onEdit, onDelete, onForAgainst, index }: Mo
                 delay: index * 0.05,
                 ease: [0.23, 1.02, 0.34, 1]
             }}
-            className="border border-border p-4 mb-3 rounded-md bg-background hover:bg-muted/30 transition-colors"
         >
             <div className="flex justify-between items-start mb-3 ">
                 <DateFormatter dateString={record.time} />
@@ -41,30 +43,34 @@ export const MobileCard = ({ record, onEdit, onDelete, onForAgainst, index }: Mo
             <div className="flex flex-col gap-3">
                 {/* Situation Section */}
                 <div>
-                    <h4 className="text-xs font-medium text-foreground/60 mb-1">Situation</h4>
+                    <h4 className="text-xs font-medium text-foreground/60 mb-1">{t('situation')}</h4>
                     <p className="text-sm">{record.situation}</p>
                 </div>
 
                 {/* Thought Section */}
                 <div>
                     <h4 className="text-xs font-medium text-foreground/60 mb-1 flex items-center gap-1">
-                        <Brain size={12} className="" />
-                        <span>Thought</span>
+                        <Brain size={12} />
+                        <span>{t('thoughts')}</span>
                     </h4>
                     <p className="text-sm font-medium">{record.thought}</p>
                 </div>
 
                 {/* Emotions Section */}
                 <div>
-                    <h4 className="text-xs font-medium text-foreground/60 mb-1">Emotions</h4>
-                    <EmotionBadgeGroup  record={record} />
+                    <h4 className="text-xs font-medium text-foreground/60 mb-1">{t('emotions')}</h4>
+                    <EmotionBadgeGroup
+                        record={record}
+                        showIntensity={true}
+                        limit={3}
+                    />
                 </div>
 
                 {/* Action Section */}
                 <div>
                     <h4 className="text-xs font-medium text-foreground/60 mb-1 flex items-center gap-1">
-                        <ThumbsUp size={12} className="" />
-                        <span>Action</span>
+                        <ThumbsUp size={12} />
+                        <span>{t('behaviours')}</span>
                     </h4>
                     <p className="text-sm">{record.action}</p>
                 </div>

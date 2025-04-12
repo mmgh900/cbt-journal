@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 import { Pencil, Scale, Trash2 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { memo } from 'react';
 import { CBTRecord } from '../../store/cbtStore';
 
@@ -12,48 +13,62 @@ interface ActionButtonsProps {
     compact?: boolean;
 }
 
-export const ActionButtons = memo(({
+export const ActionButtons = memo(function ActionButtons({
     record,
     onEdit,
     onDelete,
     onForAgainst,
     compact = false
-}: ActionButtonsProps) => {
-    const buttonSize = compact ? "h-6 w-6" : "h-7 w-7";
-    const iconSize = compact ? "" : "h-3.5 w-3.5";
+}: ActionButtonsProps) {
+    const { t } = useTranslation();
+    const iconSize = compact ? 14 : 16;
 
     return (
-        <motion.div
-            className={`flex ${compact ? 'gap-1' : 'justify-end gap-0'}`}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.2 }}
-        >
-            <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => onForAgainst(record)}
-                className={` text-muted-foreground hover:text-foreground`}
-                title="Evidence For/Against"
+        <div className="flex items-center gap-1">
+            <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
             >
-                <Scale className={iconSize} />
-            </Button>
-            <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => onEdit(record)}
-                className={` text-muted-foreground hover:text-foreground`}
+                <Button
+                    onClick={() => onEdit(record)}
+                    size={compact ? "sm" : "default"}
+                    variant="ghost"
+                    className="h-7 rounded-md px-2"
+                    title={t('edit')}
+                >
+                    <Pencil size={iconSize} />
+                </Button>
+            </motion.div>
+
+            <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
             >
-                <Pencil className={iconSize} />
-            </Button>
-            <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => onDelete(record.id)}
-                className={` text-destructive/70 hover:text-destructive`}
+                <Button
+                    onClick={() => onDelete(record.id)}
+                    size={compact ? "sm" : "default"}
+                    variant="ghost"
+                    className="h-7 rounded-md px-2 text-destructive"
+                    title={t('delete')}
+                >
+                    <Trash2 size={iconSize} />
+                </Button>
+            </motion.div>
+
+            <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
             >
-                <Trash2 className={iconSize} />
-            </Button>
-        </motion.div>
+                <Button
+                    onClick={() => onForAgainst(record)}
+                    size={compact ? "sm" : "default"}
+                    variant="ghost"
+                    className="h-7 rounded-md px-2"
+                    title={t('alternativeThoughts')}
+                >
+                    <Scale size={iconSize} />
+                </Button>
+            </motion.div>
+        </div>
     );
 });

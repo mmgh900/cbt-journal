@@ -3,6 +3,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuRadioGroup, DropdownMenu
 import { Input } from '@/components/ui/input';
 import { motion } from 'framer-motion';
 import { Calendar, ChevronDown, Download, FileUp, Search, SortAsc, SortDesc } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { useRef } from 'react';
 import { toast } from 'sonner';
 import { importAndAddRecords, exportToCSV } from '../../utils/csvUtils';
@@ -22,28 +23,30 @@ interface TableHeaderProps {
   records: CBTRecord[];
 }
 
-export const sortOptions: SortOption[] = [
-  { label: 'No sorting', value: 'none' },
-  { label: 'Alphabetical', value: 'alpha-asc', icon: <SortAsc className="h-3.5 w-3.5" /> },
-  { label: 'Reverse alphabetical', value: 'alpha-desc', icon: <SortDesc className="h-3.5 w-3.5" /> },
-  { label: 'Date - Ascending', value: 'time-asc', icon: <Calendar className="h-3.5 w-3.5" /> },
-  { label: 'Date - Descending', value: 'time-desc', icon: <Calendar className="h-3.5 w-3.5" /> },
-  { label: 'Emotions - Ascending', value: 'emotions-asc', icon: <SortAsc className="h-3.5 w-3.5" /> },
-  { label: 'Emotions - Descending', value: 'emotions-desc', icon: <SortDesc className="h-3.5 w-3.5" /> },
-];
-
 export const TableHeader = ({ globalFilter, setGlobalFilter, sortBy, setSortBy, records }: TableHeaderProps) => {
+  const { t } = useTranslation();
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Sort options with translations
+  const sortOptions: SortOption[] = [
+    { label: t('No sorting'), value: 'none' },
+    { label: t('Alphabetical'), value: 'alpha-asc', icon: <SortAsc size={14} /> },
+    { label: t('Reverse alphabetical'), value: 'alpha-desc', icon: <SortDesc size={14} /> },
+    { label: t('Date - Ascending'), value: 'time-asc', icon: <Calendar size={14} /> },
+    { label: t('Date - Descending'), value: 'time-desc', icon: <Calendar size={14} /> },
+    { label: t('Emotions - Ascending'), value: 'emotions-asc', icon: <SortAsc size={14} /> },
+    { label: t('Emotions - Descending'), value: 'emotions-desc', icon: <SortDesc size={14} /> },
+  ];
 
   // File upload handler
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       try {
         await importAndAddRecords(e.target.files[0]);
-        toast.success("Records imported successfully");
+        toast.success(t("Records imported successfully"));
         e.target.value = "";
       } catch (error) {
-        toast.error("Failed to import records");
+        toast.error(t("Failed to import records"));
       }
     }
   };
@@ -51,9 +54,9 @@ export const TableHeader = ({ globalFilter, setGlobalFilter, sortBy, setSortBy, 
   const handleExport = () => {
     if (records.length > 0) {
       exportToCSV(records);
-      toast.success("Records exported successfully");
+      toast.success(t("Records exported successfully"));
     } else {
-      toast.warning("There are no records to export");
+      toast.warning(t("There are no records to export"));
     }
   };
 
@@ -66,10 +69,10 @@ export const TableHeader = ({ globalFilter, setGlobalFilter, sortBy, setSortBy, 
     >
       <div className="flex items-center gap-3 w-full">
         <div className="relative flex-1 w-full">
-          <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+          <Search size={16} className="absolute left-2.5 top-2.5 text-muted-foreground" />
           <Input
             type="search"
-            placeholder="Search records..."
+            placeholder={t("Search records...")}
             className="pl-8 h-9 text-sm w-full"
             value={globalFilter}
             onChange={(e) => setGlobalFilter(e.target.value)}
@@ -79,8 +82,8 @@ export const TableHeader = ({ globalFilter, setGlobalFilter, sortBy, setSortBy, 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="h-9 px-3 gap-1 text-sm">
-              <span>Sort by</span>
-              <ChevronDown className="h-4 w-4 text-muted-foreground" />
+              <span>{t("Sort by")}</span>
+              <ChevronDown size={16} className="text-muted-foreground" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-[220px]">
@@ -112,8 +115,8 @@ export const TableHeader = ({ globalFilter, setGlobalFilter, sortBy, setSortBy, 
             className="h-9 text-sm gap-1 border-border/60 w-full sm:w-auto"
             onClick={() => fileInputRef.current?.click()}
           >
-            <FileUp className="h-3.5 w-3.5" />
-            Import
+            <FileUp size={14} />
+            {t("Import")}
           </Button>
         </div>
         <Button
@@ -122,8 +125,8 @@ export const TableHeader = ({ globalFilter, setGlobalFilter, sortBy, setSortBy, 
           className="h-9 text-sm gap-1 border-border/60 flex-1 sm:flex-none"
           onClick={handleExport}
         >
-          <Download className="h-3.5 w-3.5" />
-          Export
+          <Download size={14} />
+          {t("Export")}
         </Button>
       </div>
     </motion.div>
